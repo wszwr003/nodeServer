@@ -11,8 +11,14 @@ let Product = new Schema({
   ProductDescription: {
     type: String
   },
-  ProductSerialNumber: {
-    type: Number
+  ProductModel: {//产品型号
+    type: String
+  },
+  ProductSerialNumber: {//产品序列号
+    type: String
+  },
+  ProductFirmwareVersion: {//固件版本
+    type: String
   }
 },{
     collection: 'Product'
