@@ -3,7 +3,8 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     dbConfig = require('./app/DB'),
-    mysql = require("mysql"); 
+    mysql = require("mysql"),
+    productMysqlRoute = require('./app/product.mysql.dao'),
     mongoose = require('mongoose'), //TOSOLVE var/let/const/' ' differences!
     productMongoRoute = require('./app/product.mongo.dao');
 
@@ -12,7 +13,7 @@ const express = require('express'),
       () => {console.log('BanWaGong Mango database is connected!') },
       err => { console.log('Can not connect to the BanWaGong Mango database!'+ err)}
     );
-    const connection = mysql.createConnection(dbConfig.mysqlLocal);
+    mysql.createConnection(dbConfig.mysqlLocal);
 
     const app = express();
     app.use(bodyParser.json());
