@@ -8,12 +8,32 @@ const express = require('express'),
     mongoose = require('mongoose'), //TOSOLVE var/let/const/' ' differences!
     productMongoRoute = require('./app/product.mongo.dao');
 
-    mongoose.Promise = global.Promise;
-    mongoose.connect(dbConfig.mongoBanWaGong, { useNewUrlParser: true }).then(
-      () => {console.log('BanWaGong Mango database is connected!') },
-      err => { console.log('Can not connect to the BanWaGong Mango database!'+ err)}
-    );
-    mysql.createConnection(dbConfig.mysqlLocal);
+    // mongoose.Promise = global.Promise;
+    // mongoose.connect(dbConfig.mongoBanWaGong, { useNewUrlParser: true }).then(
+    //   () => {console.log('BanWaGong Mango database is connected!') },
+    //   err => { console.log('Can not connect to the BanWaGong Mango database!'+ err)}
+    // );
+
+    //const mysqlLocalRaw = mysql.createConnection(dbConfig.mysqlLocalRaw); //使用长连接
+    // mysqlLocalRaw.connect(function(err) {
+    //   if (err) throw err;
+    //   console.log("mysqlLocalRaw Connected!");
+    //   mysqlLocalRaw.query("CREATE DATABASE IF NOT EXISTS mydb ", function (err, result) {
+    //     if (err) throw err;
+    //     console.log("mysqlLocalRaw Database mydb Created!");
+    //   });
+    //   mysqlLocalRaw.release();
+    // });
+    const mysqlLocalRaw = mysql.createPool(dbConfig.mysqlLocalRaw);  //使用连接池
+    mysqlLocalRaw.getConnection(function(err, connection){
+      if (err) throw err;
+      console.log("mysqlLocalRaw Connected!");
+      connection.query("CREATE DATABASE IF NOT EXISTS mydb ", function (err, result) {
+        if (err) throw err;
+        console.log("mysqlLocalRaw Database mydb Created!");
+      });
+      connection.release();
+    });
 
     const app = express();
     app.use(bodyParser.json());
