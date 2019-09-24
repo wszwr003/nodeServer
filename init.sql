@@ -1,29 +1,11 @@
-DROP DATABASE IF EXISTS `product_db`;
-CREATE DATABASE `product_db`;
-USE `product_db`;
-DROP TABLE IF EXISTS `project`;
-CREATE TABLE `project`(
-	`id`   int(11) NOT NULL auto_increment,
-	`project` char(20) NOT NULL UNIQUE,
-	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='';
-
-DROP DATABASE IF EXISTS `user_db`;
-CREATE DATABASE `user_db`;
-USE `user_db`;
-DROP TABLE IF EXISTS `project`;
-CREATE TABLE `project`(
-	`id`   int(11) NOT NULL auto_increment,
-	`project` char(20) NOT NULL UNIQUE,
-	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='';
-
-DROP DATABASE IF EXISTS `data_db`;
-CREATE DATABASE `data_db`;
-USE `data_db`;
-DROP TABLE IF EXISTS `project`;
-CREATE TABLE `project`(
-	`id`   int(11) NOT NULL auto_increment,
-	`project` char(20) NOT NULL UNIQUE,
+DROP DATABASE IF EXISTS `grandway_product_db`;
+CREATE DATABASE `grandway_product_db`;
+USE `grandway_product_db`;
+DROP TABLE IF EXISTS `product_inf`;
+CREATE TABLE `product_inf`(
+	`product_id`   int(11) NOT NULL auto_increment,
+	`product_name` char(20) NOT NULL,
+	`product_model` char(20) NOT NULL UNIQUE,
+	`product_description` varchar(100),
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='';

@@ -1,4 +1,3 @@
-
 module.exports = {
     mongoBanWaGong: 'mongodb://69.171.79.30:27017/mymongo',
     mysqlLocalRaw: {      

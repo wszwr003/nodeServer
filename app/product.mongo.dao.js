@@ -1,4 +1,4 @@
-// product.dao.js
+// product.mongo.dao.js
 const express = require('express');
 const app = express();
 const productRoutes = express.Router();

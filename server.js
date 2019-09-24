@@ -14,7 +14,7 @@ const express = require('express'),
     //   err => { console.log('Can not connect to the BanWaGong Mango database!'+ err)}
     // );
 
-    //const mysqlLocalRaw = mysql.createConnection(dbConfig.mysqlLocalRaw); //使用长连接
+    //const mysqlLocalRaw = mysql.createConnection(dbConfig.mysqlLocalRaw); //使用短连接
     // mysqlLocalRaw.connect(function(err) {
     //   if (err) throw err;
     //   console.log("mysqlLocalRaw Connected!");
@@ -24,6 +24,7 @@ const express = require('express'),
     //   });
     //   mysqlLocalRaw.release();
     // });
+
     const mysqlLocalRaw = mysql.createPool(dbConfig.mysqlLocalRaw);  //使用连接池
     mysqlLocalRaw.getConnection(function(err, connection){
       if (err) throw err;
@@ -38,9 +39,9 @@ const express = require('express'),
     const app = express();
     app.use(bodyParser.json());
     app.use(cors()); //允许跨域 TOSOLVE 跨域的本质？to install the CORS module because of our both angular and node application is running on the different ports.
-    app.use('/products', productMongoRoute);
+    app.use('/products', productMysqlRoute);
+    
     const port = process.env.PORT || 4000;
-
     const server = app.listen(port, function(){
      console.log('Server running on port ' + port + "!");
     });
