@@ -7,12 +7,12 @@ module.exports = {
         password: "85021687",  
         multipleStatements: true 
     },
-    mysqlLocal: {      
+    mysqlLocalProductDB: {      
         host: "127.0.0.1",
         port: "3306",
         user: "root", 
         password: "85021687",  
-        database: "mymysql",  
+        database: "grandway_product_db",  
         multipleStatements: true 
     },
   };
